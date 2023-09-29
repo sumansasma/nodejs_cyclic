@@ -39,6 +39,19 @@ app.delete('/api/events/:eventId', (req, res) => {
     });
 });
 
+app.delete('/api/participants/:participantId', (req, res) => {
+    const participantId = req.params.participantId;
+
+    // Replace this with your actual database query to delete the participant by ID
+    db.run('DELETE FROM participants WHERE id = ?', [participantId], (err) => {
+        if (err) {
+            console.error(err.message);
+            return res.status(500).json({ message: 'Error deleting the participant.' });
+        }
+
+        res.status(200).json({ message: 'Participant deleted successfully.' });
+    });
+});
 
 
 // Create a SQLite database and initialize tables
