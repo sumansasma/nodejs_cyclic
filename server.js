@@ -1,3 +1,6 @@
+const twilio = require('twilio');
+const client = twilio('ACa91306b13dba1387d20c614b2dd586f3', 'a97c168c3ac19a3da2819337e4751810');
+
 const cors = require('cors');
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
