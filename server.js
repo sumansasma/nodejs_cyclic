@@ -24,6 +24,22 @@ app.get('/test', (req, res) => {
     res.send('Backend server is running!');
 });
 
+// Define a DELETE route for /api/events/:eventId
+app.delete('/api/events/:eventId', (req, res) => {
+    const eventId = req.params.eventId;
+
+    // Replace this with your actual database query to delete the event by ID
+    db.run('DELETE FROM events WHERE id = ?', [eventId], (err) => {
+        if (err) {
+            console.error(err.message);
+            return res.status(500).json({ message: 'Error deleting the event.' });
+        }
+
+        res.status(200).json({ message: 'Event deleted successfully.' });
+    });
+});
+
+
 
 // Create a SQLite database and initialize tables
 const db = new sqlite3.Database('events.db', (err) => {
